@@ -1,11 +1,15 @@
 <?php
+function myLink($id)
+{
+    return 'views/edit_news.php?id=' . $id;
+}
 
 if (!empty($arr["news"])) {
     echo '<table class="table">';
     foreach ($arr["news"] as $key => $value) {
-        echo '<td><a href="edit_news.php?id=' . $value['news_id'] . '">' . '<img src="' . $value["news_image"] .
+        echo '<td><a href="' . myLink( $value['news_id']) . '">' . '<img src="' . $value["news_image"] .
             '" title=' . $value['category_id'] . ' height=200></a><br/>' .
-            '<a href="edit_news.php?id=' . $value['news_id'] . '">' . $value['news_name'] . ': ' . $value['short_description'] . '</a></td>';
+            '<a href="' . myLink( $value['news_id']) . '">' . $value['news_name'] . ': ' . $value['short_description'] . '</a></td>';
     }
     echo '</table>';
 } else {

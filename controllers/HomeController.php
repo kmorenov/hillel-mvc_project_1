@@ -8,7 +8,7 @@ class HomeController
       //  echo 'Hello from index';
         $model = new MainModel();
         $news = $model->getdata();
-        include_once 'views/news.php';
+        //include 'views/news.php';
     }
 }
 

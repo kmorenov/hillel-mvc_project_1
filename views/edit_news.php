@@ -6,12 +6,10 @@
  * Time: 20:39
  */
 session_start();
-//require_once '../models/Connection.php';
-//
-//$c = new Connection('localhost', 'root', '', 'project1');
-//$connect = $c->myconnect();
-echo 'EDIT NEWS';
-exit;
+require_once '../models/Connection.php';
+$c = new Connection('localhost', 'root', '', 'project1');
+$connect = $c->myconnect();
+
 
 $newsid = !empty($_GET['id']) ? $_GET['id'] : '';
 $sql = "SELECT * FROM news WHERE news_id=" . $newsid;
