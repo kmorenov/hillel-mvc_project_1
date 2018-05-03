@@ -1,14 +1,12 @@
 <?php
-require_once 'models/MainModel.php';
+require_once 'models/HomeModel.php';
 
 class HomeController
 {
     public function index ()
     {
-      //  echo 'Hello from index';
-        $model = new MainModel();
+        $model = new HomeModel();
         $news = $model->getdata();
-        //include 'views/news.php';
     }
 }
 

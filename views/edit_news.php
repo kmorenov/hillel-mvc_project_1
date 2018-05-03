@@ -1,41 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: user
- * Date: 31-Oct-17
- * Time: 20:39
- */
-session_start();
-require_once '../models/Connection.php';
-$c = new Connection('localhost', 'root', '', 'project1');
-$connect = $c->myconnect();
-
-
-$newsid = !empty($_GET['id']) ? $_GET['id'] : '';
-$sql = "SELECT * FROM news WHERE news_id=" . $newsid;
-$query = mysqli_query($connect, $sql);
-//var_dump($sql);
-//exit;
-
-while ($res[] = mysqli_fetch_assoc($query)) {
-    $news = $res;
-}
-
-//echo 'News ID: ' . $news[0]["news_id"] . '<br/>News Name: ' . $news[0]["news_name"] . '<br/>Short Description: ' . $news[0]["short_description"] .
-    '<br/>Description: ' . $news[0]["description"] . '<br/>Date: ' . $news[0]["date"] . '<br/><img src="../../' . $news[0]["news_image"]
-    . '"<br/><br/>Category ID: ' . $news[0]["category_id"];
-
-
-$sql = "SELECT category_id FROM category";
-$query = mysqli_query($connect, $sql);
-
-while ($res[] = mysqli_fetch_assoc($query)) {
-    $category_id = $res;
-}
-?>
 <html>
 <head>
-    <title>Project 1</title>
+    <title>Hillel MVC</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -46,7 +11,8 @@ while ($res[] = mysqli_fetch_assoc($query)) {
     <div class="container">
         <div class="row">
             <form action="update_news.php" method="post" class="form-horizontal col-md-10 col-md-offset-2">
-            <div class="form-group">
+                <?= '<h1>' . $news[0]["news_name"] . ' State Motto</h1>' ?>
+                <div class="form-group">
                 <label class="col-md-2">News ID</label><div class="col-md-10">
                     <input type="text" readonly name="news_id" value="<?php echo $news[0]["news_id"]; ?>" /></div>
             </div>
@@ -67,19 +33,19 @@ while ($res[] = mysqli_fetch_assoc($query)) {
                     <input type="date" name="date" value="<?php echo $news[0]["date"]; ?>" /></div>
             </div>
                 <input type="file" name="news_image" value="<?php echo $news[0]["news_image"] ?>" />
-                <img src="../<?php echo $news[0]["news_image"] ?>">
+                <img src="./<?php echo $news[0]["news_image"] ?>">
 
             <div class="form-group">
                 <label class="col-md-2">Category ID</label>
                     <div class="col-md-10">
                         <select name="category_id">
                             <?php
+                            echo '<br/>$_SESSION[category_id]';// . $_SESSION['category_id'];
+                            for($i=0; $i<count($news[0]["category_id"]); $i++){?>
 
-                            for($i=0; $i<count($category_id); $i++){?>
-
-                                <option value="<?php echo $category_id[$i]['category_id']; ?>"
-                                    <?php echo !empty($_SESSION['category_id']) && $_SESSION['category_id'] == $category_id[$i]['category_id']
-                                        ? 'selected' : ''; ?> ><?php echo $category_id[$i]['category_id']; ?>
+                                <option value="<?php echo $news[$i]["category_id"]; ?>"
+                                    <?php echo !empty($_SESSION['category_id']) && $_SESSION['category_id'] == $news[0]['category_id']
+                                        ? 'selected' : ''; ?> ><?php echo $news[$i]["category_id"]; ?>
                                 </option>
 
                             <?php } ?>

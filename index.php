@@ -1,11 +1,20 @@
 <?php
+ini_set('display_errors', 1);
 session_start();
-const FOLDER = "/hillel/mvc_project_1/";
+const FOLDER = "/hillel-mvc_project_1/";
+
+require_once "Router.php";
+
+//Router::start();
 
 require_once $_SERVER['DOCUMENT_ROOT'] . FOLDER . "config.php";
 
-if(!empty($_GET['route'])){
-    $filename = $_SERVER['DOCUMENT_ROOT'] . FOLDER . "controllers/" . $_GET['route'] . ".php";
+if (!empty($_GET['id'])){
+    $filename = $_SERVER['DOCUMENT_ROOT'] . FOLDER . "controllers/" . "NewsController.php";
+}
+
+if (!empty($_GET['page'])) {
+    $filename = $_SERVER['DOCUMENT_ROOT'] . FOLDER . "controllers/HomeController.php";
 }
 
 if(strtolower($_SERVER['REQUEST_URI']) == FOLDER){

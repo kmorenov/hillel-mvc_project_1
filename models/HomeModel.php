@@ -1,13 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kostya
- * Date: 20/04/18
- * Time: 4:15 AM
- */
+
 require_once 'Connection.php';
 
-class MainModel
+class HomeModel
 {
 
     public function getData()
@@ -18,7 +13,6 @@ class MainModel
     private function getDataFromDatabase()
     {
         DEFINE("ROWS_PER_PAGE", 3);
-        //echo '<br/>get Data From Database';
         $c = new Connection(HOST, USER, PASSWORD, DATABASE);
 
         $connect = $c->myconnect();
